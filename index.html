@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bookmark</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div class="container">
+                <div class="header">
+                    <h1>Bookmark</h1>
+                    <p>Your personal collection of books</p>
+                </div>
+        
+                <div class="main-content">
+                    <div class="upload-section">
+                        <p>Supported format: PDF</p>
+                        <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                            Add Books
+                        </button>
+                        <input type="file" id="fileInput" class="file-input" accept=".pdf" multiple>
+                    </div>
+        
+                    <div class="library-section" id="librarySection">
+                        <h2 class="section-title">Your Library</h2>
+                        <div class="books-grid" id="booksGrid">
+                        </div>
+                    </div>
+        
+                    <div class="pdf-viewer-section" id="pdfViewerSection" style="display: none;">
+                        <div class="pdf-controls">
+                            <button class="btn btn-secondary" onclick="closePdfViewer()">← Back to Library</button>
+                            <span id="currentBookTitle"></span>
+                            <div class="page-controls">
+                                <button class="btn btn-secondary" onclick="previousPage()">← Previous</button>
+                                <span id="pageInfo">Page 1 of 1</span>
+                                <button class="btn btn-secondary" onclick="nextPage()">Next →</button>
+                            </div>
+                        </div>
+                        <canvas id="pdfCanvas" style="width: 100%; border-radius: 10px;"></canvas>                    </div>
+                </div>
+            </div>
+        
+            <div id="uploadModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <h3>Re-upload Required</h3>
+                    <p>This book is not currently in memory. Please re-upload the PDF file to continue reading.</p>
+                    <p><strong id="modalBookName"></strong></p>
+                    <input type="file" id="modalFileInput" accept=".pdf">
+                    <br><br>
+                    <button class="btn btn-primary" onclick="handleModalUpload()">Upload</button>
+                    <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                </div>
+            </div>
+        <script src="main.js"></script>
+    </body>
+</html>

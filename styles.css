@@ -1,0 +1,352 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    color: #000;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.header {
+    color: black;
+    padding: 30px;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.header p {
+    opacity: 0.9;
+    font-size: 1.1rem;
+}
+
+.main-content {
+    padding: 30px;
+}
+
+.upload-section {
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.file-input {
+    display: none;
+}
+
+.upload-btn {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+}
+
+.upload-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.library-section {
+    margin-bottom: 40px;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.book-card {
+    background: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    border-color: #000;
+}
+
+.book-card.needs-upload {
+    border-color: #000;
+    background: #fff8f5;
+}
+
+.book-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+    word-break: break-word;
+}
+
+.book-info {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.book-status {
+    font-size: 0.8rem;
+    padding: 4px 12px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    display: inline-block;
+    font-weight: 500;
+}
+
+.status-ready {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-needs-upload {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.book-progress {
+    background: #e9ecef;
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.book-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.book-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background: #000;
+    color: #fff;
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: #fff;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: #fff;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #666;
+    grid-column: 1 / -1;
+}
+
+.empty-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    opacity: 0.4;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: -10px;
+    margin-right: -10px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.close:hover {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.modal h3 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.modal p {
+    color: #666;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+#modalBookName {
+    color: #667eea;
+    font-weight: 600;
+}
+
+#modalFileInput {
+    margin: 20px 0;
+    padding: 10px;
+    border: 2px dashed #ddd;
+    border-radius: 10px;
+    width: 100%;
+    background: #f9f9f9;
+}
+
+.pdf-viewer-section {
+    margin-top: 30px;
+}
+
+.hidden {
+    display: none;
+}
+
+.pdf-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.page-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#currentBookTitle {
+    font-weight: 600;
+    color: #333;
+    flex: 1;
+    text-align: center;
+    min-width: 200px;
+}
+
+#pageInfo {
+    color: #666;
+    font-weight: 500;
+    min-width: 100px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .books-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .book-actions {
+        justify-content: center;
+    }
+
+    .pdf-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #currentBookTitle {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .page-controls {
+        justify-content: center;
+    }
+}
